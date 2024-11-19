@@ -18,7 +18,7 @@
             overflow: hidden;
         }
 
-        video {
+        .background img {
             position: absolute;
             top: 0;
             left: 0;
@@ -49,7 +49,6 @@
 
         .chat-box {
             max-height: 500px;
-            max-width: 1000x;
             overflow-y: auto;
             padding: 15px;
             background-color: #f4f4f4;
@@ -101,119 +100,18 @@
 </head>
 <body>
     <div class="background">
-        <video autoplay loop muted>
-            <!-- Video file -->
-            <source src="back.jpeg" type="image">
-            Your browser does not support the video tag.
-        </video>
+        <img src="back.jpeg" alt="Background Image">
         <div class="chat-container">
             <div class="chat-header">Smart Waste Management Chat</div>
             <div class="chat-box" id="chatBox">
                 <iframe
-                src="https://www.chatbase.co/chatbot-iframe/sAX16Vc4dr1zeq3fm0l5U"
-                width="100%"
-                style="height: 100%; min-height: 700px"
-                frameborder="0"
+                    src="https://www.chatbase.co/chatbot-iframe/sAX16Vc4dr1zeq3fm0l5U"
+                    width="100%"
+                    style="height: 100%; min-height: 700px"
+                    frameborder="0"
                 ></iframe>
-<!--                 <iframe
-                src="https://www.chatbase.co/chatbot-iframe/qtAfMrp1kqmCTacH22eFm"
-                width="100%"
-                style="height: 100%; min-height: 700px"
-                frameborder="0"
-                ></iframe>              -->
             </div>
         </div>
     </div>
-    <!--
-    <script>!(function () {
-        let e = document.createElement("script"),
-          t = document.head || document.getElementsByTagName("head")[0];
-        (e.src =
-          "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
-          // Replace 1.x.x with the version that you want
-          (e.async = !0),
-          (e.onload = () => {
-            window.WebChat.default(
-              {
-                customData: { language: "en" },
-                socketUrl: "https://bf-botfront.development.agents.botfront.cloud",
-                // add other props here
-              },
-              null
-            );
-          }),
-          t.insertBefore(e, t.firstChild);
-      })();
-      </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const chatBox = document.getElementById("chatBox");
-            const userInput = document.getElementById("userInput");
-            const sendButton = document.getElementById("sendButton");
-
-            sendButton.addEventListener("click", sendMessage);
-
-            function sendMessage() {
-                const userMessage = userInput.value.trim();
-
-                if (userMessage !== "") {
-                    appendMessage("You", userMessage, "user-message");
-
-                    // Send user message to Rasa server
-                    sendToRasa(userMessage)
-                        .then(botResponse => {
-                            // Display bot response
-                            appendMessage("Bot", botResponse, "bot-message");
-
-                            // Scroll to the bottom of the chat box
-                            chatBox.scrollTop = chatBox.scrollHeight;
-
-                            // Clear the input field
-                            userInput.value = "";
-                        })
-                        .catch(error => console.error(error));
-                }
-            }
-
-            function appendMessage(sender, message, className) {
-                const messageElement = document.createElement("div");
-                messageElement.className = `message ${className}`;
-                messageElement.textContent = `${sender}: ${message}`;
-                chatBox.appendChild(messageElement);
-            }
-
-            async function sendToRasa(userMessage) {
-                const rasaServerUrl = 'YOUR_RASA_SERVER_URL';
-                const rasaEndpoint = `${rasaServerUrl}/webhooks/rest/webhook`;
-
-                const response = await fetch(rasaEndpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: userMessage,
-                    }),
-                });
-
-                const responseData = await response.json();
-
-                // Assuming Rasa response is an array of messages
-                if (responseData && responseData.length > 0) {
-                    return responseData[0].text;
-                } else {
-                    return 'Error: Unable to get a valid response from Rasa.';
-                }
-            }
-
-            function handleKeyPress(event) {
-                // If Enter key is pressed, simulate a click on the send button
-                if (event.key === "Enter") {
-                    sendButton.click();
-                }
-            }
-        });
-    </script>
-    -->
 </body>
 </html>
